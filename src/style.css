@@ -1,0 +1,22 @@
+#dynamic_se_widget_data {
+    display: none;
+}
+
+#dynamic_se_widget_example {
+    width: 100%;
+    height: 100%;
+    background: aquamarine;
+}
+
+#border-example {
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 30px;
+    width: 100px;
+    border: 1px solid black;
+}
+
+html, body {
+     margin: 0;
+     height: 100%;
+ }
