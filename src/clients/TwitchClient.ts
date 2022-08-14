@@ -1,4 +1,5 @@
 import * as tmi from 'tmi.js'
+import ClassHandler from "../events/ClassHandler";
 
 export default class TwitchClient {
     protected channelId = document.querySelector('#channel_name')?.innerHTML.trim()
@@ -23,6 +24,12 @@ export default class TwitchClient {
         await this.twitchClient.connect()
 
         console.log(`connected to ${this.channelId}`)
+
+        this.registerHandlers()
+    }
+
+    private registerHandlers() {
+        new ClassHandler(this)
     }
 
     public getClient() {
