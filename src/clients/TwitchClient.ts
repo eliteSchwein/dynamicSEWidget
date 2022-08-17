@@ -6,8 +6,8 @@ export default class TwitchClient {
     protected channelId = document.querySelector('#channel_name')?.innerHTML.trim()
     protected twitchClient: tmi.Client | undefined
     protected channelData = {}
-    protected authToken = '2gbdx6oar67tqtcmt49t3wpcgycthx'
-    protected clientId = 'wbmytr93xzw8zbg0p1izqyzzc5mbiz'
+    protected authToken = document.querySelector('#twitch_token')?.innerHTML.trim()
+    protected clientId = document.querySelector('#client_id')?.innerHTML.trim()
 
     public constructor() {
         this.connectClient()
@@ -26,11 +26,14 @@ export default class TwitchClient {
         console.log(`get Info for ${this.channelId}`)
 
         const request = await fetch(`https://api.twitch.tv/helix/channels?${this.channelId}`, {
+            // @ts-ignore
             headers: {
                 'Authorization': `Bearer ${this.authToken}`,
                 'Client-Id': this.clientId
             }
         })
+
+        console.log(request)
 
         console.log(`connect to ${this.channelId}`)
 
