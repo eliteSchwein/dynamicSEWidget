@@ -4,10 +4,11 @@ import TemplateHandler from "../events/TemplateHandler";
 
 export default class TwitchClient {
     protected channelId = document.querySelector('#channel_name')?.innerHTML.trim()
-    protected twitchClient: tmi.Client | undefined
-    protected channelData = {}
     protected authToken = document.querySelector('#twitch_token')?.innerHTML.trim()
     protected clientId = document.querySelector('#client_id')?.innerHTML.trim()
+    protected botName = document.querySelector('#bot_name')?.innerHTML.trim()
+    protected twitchClient: tmi.Client | undefined
+    protected channelData = {}
 
     public constructor() {
         this.connectClient()
@@ -20,7 +21,14 @@ export default class TwitchClient {
 
         this.twitchClient = new tmi.Client({
             // @ts-ignore
-            channels: [this.channelId]
+            channels: [this.channelId],
+            options: {
+                clientId: this.clientId
+            },
+            identity: {
+                username: this.botName,
+                password: this.authToken
+            }
         })
 
         console.log(`get Info for ${this.channelId}`)
